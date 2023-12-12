@@ -1,0 +1,87 @@
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+           
+        </div>
+    </div>
+    <div class="right">
+        <h4>Sign Up</h4>
+        <form [formGroup]="signupForm" (ngSubmit)="submit()">
+            <div class="inputs">
+                <input type="text"  (keypress)="checkInput($event)" name="Firstname" class="login__input" placeholder="Name *"
+                    formControlName="name" (input)="limitUserNameLength($event)">
+                <div class="error-list" *ngIf="fc.name.errors && (fc.name.touched || isSubmitted)">
+                    <div *ngIf="fc.name.errors.required" class="alert alert-danger">name should not be empty
+                    </div>
+                    <div *ngIf="fc.name.errors.minlength" class="alert alert-danger">name should be
+                        atleast 3 characters</div>
+                    <div *ngIf="fc.name.errors.maxlength" class="alert alert-danger">name should be
+                        atmost 15 characters</div>
+                </div>
+            </div>
+            <div class="inputs">
+                <input type="email" name="email" class="login__input" placeholder="Email *" formControlName="email"
+                    (input)="limitEmailLength($event)">
+                <div class="error-list" *ngIf="fc.email.errors && (fc.email.touched || isSubmitted)">
+                    <div *ngIf="fc.email.errors.email" class="alert alert-danger">Email is not valid </div>
+                    <div *ngIf="fc.email.errors.required" class="alert alert-danger">Should not be empty</div>
+                    <div *ngIf="fc.email.errors.minlength" class="alert alert-danger">Email should be at least 10
+                        characters long</div>
+                    <div *ngIf="fc.email.errors.maxlength" class="alert alert-danger">Email should be atmost 20
+                        characters long</div>
+                    <!-- <div *ngIf="fc.email.errors.invalidEmail" class="alert alert-danger">Email should be like an email -->
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="inputs">
+                <input type="number" name="mobileNumber" class="login__input" placeholder="Mobile Number *"
+                    formControlName="mobileNumber" (input)="limitMNumberLength($event)">
+                <div class="error-list" *ngIf="fc.mobileNumber.errors && (fc.mobileNumber.touched || isSubmitted)">
+                    <div *ngIf="fc.mobileNumber.errors.required" class="alert alert-danger">Mobile Number should not be
+                        empty</div>
+                    <!-- <div *ngIf="fc.mobileNumber.errors.maxlength" class="alert alert-danger">Mobile Number should be
+                        atmost 10 characters</div> -->
+                    <div *ngIf="fc.mobileNumber.errors.minlength" class="alert alert-danger">Mobile Number should be
+                        atleast 10 characters</div>
+                    <div *ngIf="fc.mobileNumber.errors.pattern" class="alert alert-danger">Mobile Number should contain
+                        only numbers</div>
+                </div>
+            </div>
+            <div class="inputs">
+                <div class="password-field">
+                    <input [type]="passwordToggler ? 'password' : 'text'" name="password" class="login__input"
+                        placeholder="Password *" formControlName="password">
+                    <button type="button" (click)="togglePassword()">
+                        <p>Show</p>
+                    </button>
+                </div>
+                <div class="error-list" *ngIf="fc.password.errors && (fc.password.touched || isSubmitted)">
+                    <div *ngIf="fc.password.errors.required" class="alert alert-danger">
+                        Password should not be empty
+                    </div>
+                    <div *ngIf="fc.password.errors.minlength" class="alert alert-danger">
+                        Password should be at least 8 characters long
+                    </div>
+                    <div *ngIf="fc.password.errors.pattern" class="alert alert-danger">
+                        Password should include at least 1 uppercase letter,1 digit and 1 special character
+                    </div>
+                </div>
+            </div>
+            <div class="inputs">
+                <input type="password" name="confirmPassword" class="login__input" placeholder="ConfirmPassword *"
+                    formControlName="confirmPassword">
+                <div class="error-list"
+                    *ngIf="fc.confirmPassword.errors && (fc.confirmPassword.touched || isSubmitted)">
+                    <div *ngIf="fc.confirmPassword.errors.required" class="alert alert-danger">
+                        Confirm Password is required.
+                    </div>
+                    <div *ngIf="fc.confirmPassword.errors.passwordShouldMatch " class="alert alert-danger">
+                        Password and Confirm Password do not match.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button type="submit" >Sign Up</button>
+        </form>
+    </div>
+</div>

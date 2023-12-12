@@ -1,0 +1,13 @@
+
+<div class="flexbox">
+    <h2>Shorten URL</h2>
+    <div>
+    <label class="label" for="originalUrl">Original URL: </label>
+    <input type="text" id="originalUrl"/>
+  </div>
+    <button (click)="onSubmit()">Shorten</button>
+    <p>Shortened URL: {{shortenedUrl}}</p>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
